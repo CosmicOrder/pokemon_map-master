@@ -84,6 +84,8 @@ def show_pokemon(request, pokemon_id):
 
     pokemon = POKEMONS.get(pokemon_db.title)
     pokemon['description'] = pokemon_db.description
+    pokemon['title_en'] = pokemon_db.title_en
+    pokemon['title_jp'] = pokemon_db.title_jp
 
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
     add_pokemon(
