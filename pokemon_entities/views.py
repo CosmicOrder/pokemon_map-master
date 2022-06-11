@@ -24,11 +24,24 @@ POKEMONS = {"Бульбазавр":
         {
             "title_ru": "Ивизавр",
             "img_url": "https://vignette.wikia.nocookie.net/pokemon/images/7/73/002Ivysaur.png/revision/latest/scale-to-width-down/200?cb=20150703180624&path-prefix=ru",
+            "previous_evolution":
+                {
+                    "title_ru": "Бульбазавр",
+                    "pokemon_id": 1,
+                    "img_url": "https://upload.wikimedia.org/wikipedia/ru/c/ca/%D0%91%D1%83%D0%BB%D1%8C%D0%B1%D0%B0%D0%B7%D0%B0%D0%B2%D1%80.png"
+                }
         },
+
     "Венузавр":
         {
             "title_ru": "Венузавр",
             "img_url": "https://vignette.wikia.nocookie.net/pokemon/images/a/ae/003Venusaur.png/revision/latest/scale-to-width-down/200?cb=20150703175822&path-prefix=ru",
+            "previous_evolution":
+                {
+                    "title_ru": "Ивизавр",
+                    "pokemon_id": 2,
+                    "img_url": "https://vignette.wikia.nocookie.net/pokemon/images/7/73/002Ivysaur.png/revision/latest/scale-to-width-down/200?cb=20150703180624&path-prefix=ru"
+                }
         }
 }
 
