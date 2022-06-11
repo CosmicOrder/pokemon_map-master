@@ -78,11 +78,12 @@ def show_pokemon(request, pokemon_id):
     except ObjectDoesNotExist:
         return ('<h1>Информации о таком покемоне не найден</h1>')
     try:
-        pokemon_title = Pokemon.objects.get(pk=pokemon_id).title
+        pokemon_db = Pokemon.objects.get(pk=pokemon_id)
     except ObjectDoesNotExist:
         return ('<h1>Такой покемон не найден</h1>')
 
-    pokemon = POKEMONS.get(pokemon_title)
+    pokemon = POKEMONS.get(pokemon_db.title)
+    pokemon['description'] = pokemon_db.description
 
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
     add_pokemon(
