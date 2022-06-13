@@ -80,7 +80,7 @@ def show_pokemon(request, pokemon_id):
             "pokemon_id": pokemon_db.previous_evolution.pk,
             "img_url": pokemon_db.previous_evolution.image.url,
         }
-    if pokemon_db.next_evolution:
+    if pokemon_db.next_evolution.first():
         pokemon["next_evolution"] = {
             "title_ru": pokemon_db.next_evolution.first().title,
             "pokemon_id": pokemon_db.next_evolution.first().pk,
