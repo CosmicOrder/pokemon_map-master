@@ -61,30 +61,30 @@ def show_pokemon(request, pokemon_id):
     except ObjectDoesNotExist:
         return ('<h1>Информации о таком покемоне не найден</h1>')
     try:
-        pokemon_db = Pokemon.objects.get(pk=pokemon_id)
+        pokemon = Pokemon.objects.get(pk=pokemon_id)
     except ObjectDoesNotExist:
         return ('<h1>Такой покемон не найден</h1>')
 
-    pokemon = {
-        "pokemon_id": pokemon_db,
-        "title_ru": pokemon_db.title,
-        "title_en": pokemon_db.title_en,
-        "title_jp": pokemon_db.title_jp,
-        "description": pokemon_db.description,
-        "img_url": pokemon_db.image.url,
+    pokemon_specs = {
+        "pokemon_id": pokemon.id,
+        "title_ru": pokemon.title,
+        "title_en": pokemon.title_en,
+        "title_jp": pokemon.title_jp,
+        "description": pokemon.description,
+        "img_url": pokemon.image.url,
     }
 
-    if pokemon_db.previous_evolution:
-        pokemon["previous_evolution"] = {
-            "title_ru": pokemon_db.previous_evolution.title,
-            "pokemon_id": pokemon_db.previous_evolution.pk,
-            "img_url": pokemon_db.previous_evolution.image.url,
+    if pokemon.previous_evolutions:
+        pokemon_specs["previous_evolution"] = {
+            "title_ru": pokemon.previous_evolutions.title,
+            "pokemon_id": pokemon.previous_evolutions.pk,
+            "img_url": pokemon.previous_evolutions.image.url,
         }
-    if pokemon_db.next_evolution.first():
-        pokemon["next_evolution"] = {
-            "title_ru": pokemon_db.next_evolution.first().title,
-            "pokemon_id": pokemon_db.next_evolution.first().pk,
-            "img_url": pokemon_db.next_evolution.first().image.url,
+    if pokemon.next_evolutions.first():
+        pokemon_specs["next_evolution"] = {
+            "title_ru": pokemon.next_evolutions.first().title,
+            "pokemon_id": pokemon.next_evolutions.first().pk,
+            "img_url": pokemon.next_evolutions.first().image.url,
         }
 
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
@@ -95,5 +95,5 @@ def show_pokemon(request, pokemon_id):
     )
 
     return render(request, 'pokemon.html', context={
-        'map': folium_map._repr_html_(), 'pokemon': pokemon
+        'map': folium_map._repr_html_(), 'pokemon': pokemon_specs
     })

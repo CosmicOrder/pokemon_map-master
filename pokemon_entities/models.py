@@ -7,12 +7,12 @@ class Pokemon(models.Model):
     title_jp = models.CharField("Название на японском", max_length=200, blank=True)
     image = models.ImageField("Изображение", blank=True)
     description = models.TextField("Описание", blank=True)
-    previous_evolution = models.ForeignKey(
+    previous_evolutions = models.ForeignKey(
         "self",
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Из кого эволюционировал",
-        related_name="next_evolution",
+        related_name="next_evolutions",
     )
 
     def __str__(self):
@@ -23,7 +23,7 @@ class PokemonEntity(models.Model):
     pokemon = models.ForeignKey(
         Pokemon, on_delete=models.CASCADE,
         verbose_name='Покемон',
-        related_name='pokemon_entity',
+        related_name='pokemon_entities',
     )
     lat = models.FloatField()
     lon = models.FloatField()
